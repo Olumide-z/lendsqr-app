@@ -1,0 +1,47 @@
+.login-text{
+    font-size: .8rem;
+}
+
+form{
+    margin-top: 2rem;
+}
+
+.input-field{
+    width: 300px;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+input{
+    width: 100%;
+    padding: .4rem .8rem;
+    outline: none;
+}
+
+.show-btn{
+    position: absolute;
+    top: 9px;
+    font-size: .7rem;
+    left: 255px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #6FDFDF;
+    background-color: transparent;
+}
+
+.login-btn{
+    width: 300px;
+    padding: 0.4rem;
+    background-color: #6FDFDF;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+
+.login-btn:hover{
+
+}

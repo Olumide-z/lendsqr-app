@@ -1,0 +1,67 @@
+.container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-section{
+    background-color: white;
+    height: 80vh;
+    width: 80vw;
+    display: flex;
+    box-shadow:rgb(0 0 0 / 40%) -3px 0px 36px -7px;
+}
+
+.left-side{
+    width: 50%;
+    box-shadow:rgb(0 0 0 / 40%) -3px 0px 36px -7px;
+}
+
+.logo-container{
+    display: flex;
+    align-items: center;
+    padding: 2rem 0 0 2rem;
+}
+
+.img1{
+    width: 20px;
+}
+
+.img2{
+    width: 100px;
+    margin-left: 10px;
+}
+
+.login-image-container{
+    width: 450px;
+    margin: 4rem 2rem 0 2rem;
+}
+
+.login-image{
+    width: 100%;
+}
+
+.right-side{
+    width: 50%;
+    position: relative;
+}
+
+.right-side-section{
+    padding: 7rem;
+}
+
+.new-user-1{
+    position: absolute;
+    top: 23rem;
+    right: 13rem;
+    cursor: pointer;
+}
+
+
+.new-user-2{
+    position: absolute;
+    top: 24rem;
+    right: 7rem;
+    cursor: pointer;
+}
