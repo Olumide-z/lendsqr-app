@@ -7,26 +7,24 @@ import { GrMoney } from "react-icons/gr";
 import { GiReceiveMoney } from "react-icons/gi";
 import { IoMdArrowDropleft, IoMdArrowDropright } from "react-icons/io";
 
-
 import "./users.css";
 import { useDispatch, useSelector } from "react-redux";
 import ReactPaginate from "react-paginate";
 import { Link } from "react-router-dom";
 import { activeStatus, blacklistStatus } from "../../features/userSlice";
 
+
 const Users = (id) => {
   const { users, status } = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  
 
   const [showDropdown, setShowDropdown] = useState(false);
- 
 
   const handleClick = (id) => {
-    const dropdown = users.find((item) => item.id === id)
-    setShowDropdown(dropdown);
-  }
-
+    // const dropdown = users.find((item) => item.id === id)
+    setShowDropdown(!showDropdown);
+  };
+  //
   const [pageNumber, setPageNumber] = useState(0);
   // console.log(users);
   const usersPerPage = 10;
@@ -37,29 +35,47 @@ const Users = (id) => {
     .map((user) => {
       return (
         <>
-        <tr key={user.id}>
-          <td>{user.organization}</td>
-          <td>{user.user_name}</td>
-          <td>{user.user_email}</td>
-          <td>{user.phone_number}</td>
-          <td>{moment(user.date).format("lll")}</td>
-          <td className="td">
-            <p className='status pending-status'>{status}</p>
-            <button className="user_btn" onClick={() => handleClick(user.id)}>
-              <img src="/images/info.svg" alt="" />
-            </button>
-          </td>
-        </tr>
-         {showDropdown && (
-          <div className='dropdown'>
-          <ul>
-              <Link to={`/user/${user.id}`}><li>View Details</li></Link>
-              <li onClick={() => dispatch(activeStatus())}>active</li>
-              <li onClick={() => dispatch(blacklistStatus())}>Blacklist</li>
-          </ul>
-      </div>
-      )}
-      </>
+          <tr key={user.id}>
+            <td>{user.organization}</td>
+            <td>{user.user_name}</td>
+            <td>
+              {user.user_email.length <= 20
+                ? user.user_email
+                : `${user.user_email.slice(0, 20)}...`}
+            </td>
+            <td>+{user.phone_number}</td>
+            <td>{moment(user.date).format("lll")}</td>
+            <td className="td">
+              <p
+                className={`status ${
+                  status === `pending`
+                    ? `pending-status`
+                    : status === `active`
+                    ? `active-status`
+                    : `blacklist-status`
+                }`}
+              >
+                {status}
+              </p>
+              <button className="user_btn" onClick={() => handleClick(user.id)}>
+                <img src="/images/info.svg" alt="" />
+              </button>
+              {showDropdown && (
+                <div className="dropdown">
+                  <ul>
+                    <Link to={`/user/${user.id}`}>
+                      <li>View Details</li>
+                    </Link>
+                    <li onClick={() => dispatch(activeStatus())}>active</li>
+                    <li onClick={() => dispatch(blacklistStatus())}>
+                      Blacklist
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </td>
+          </tr>
+        </>
       );
     });
 
@@ -74,28 +90,28 @@ const Users = (id) => {
       <div className="box-wrapper">
         <div className="boxes">
           <div className="box-icons box1">
-            <IoMdContacts />
+          <img src="/images/users.svg" alt="users"/>
           </div>
           <p className="box-name">USERS</p>
           <p className="box-number">2,453</p>
         </div>
         <div className="boxes">
           <div className="box-icons box2">
-            <FaUsers />
+          <img src="/images/activeUser.svg" alt="users"/>
           </div>
           <p className="box-name">ACTIVE USERS</p>
           <p className="box-number">2,453</p>
         </div>
         <div className="boxes">
           <div className="box-icons box3">
-            <GiReceiveMoney />
+            <img src="/images/loan.svg" alt="loan"/>
           </div>
           <p className="box-name">USERS WITH LOANS</p>
           <p className="box-number">12,453</p>
         </div>
         <div className="boxes">
           <div className="box-icons box4">
-            <GrMoney />
+            <img src="/images/savings.svg" alt="savings"/>
           </div>
           <p className="box-name">USERS WITH SAVINGS</p>
           <p className="box-number">102,453</p>

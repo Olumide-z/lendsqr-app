@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
 import "./detail.css";
 import UserInfo from "../UserInfo/UserInfo";
+import { activeStatus, blacklistStatus } from "../../../features/userSlice";
 
 const Details = () => {
   const { id } = useParams();
   const { users } = useSelector((store) => store.user);
+  const dispatch = useDispatch();
 
   const [toggleTab, setToggletab] = useState(1);
 
@@ -15,6 +17,7 @@ const Details = () => {
     setToggletab(index);
   };
   const user = users.find((user) => user.id.toString() === id);
+
 
   return (
     <div className="details-container">
@@ -27,8 +30,18 @@ const Details = () => {
       <div className="detail-title">
         <h2>Users Details</h2>
         <div className="btn">
-          <button className="user-btn blacklist-btn">blacklist user</button>
-          <button className="user-btn active-btn">activate user</button>
+          <button
+            className="user-btn blacklist-btn"
+            onClick={() => dispatch(blacklistStatus())}
+          >
+            blacklist user
+          </button>
+          <button
+            className="user-btn active-btn"
+            onClick={() => dispatch(activeStatus())}
+          >
+            activate user
+          </button>
         </div>
       </div>
       {user && (
